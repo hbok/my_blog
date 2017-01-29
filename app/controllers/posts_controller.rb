@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy]
   def index
-    @posts = Post.all
-    @new_posts = Post.all
+    @posts = Post.order(created_at: :desc)
+    # 最新記事を５つ取得
+    @new_posts = Post.order(created_at: :desc).limit(5)
   end
 
   def show
